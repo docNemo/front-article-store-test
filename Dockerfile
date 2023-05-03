@@ -1,5 +1,5 @@
 FROM node:18.16.0-alpine3.17
-FROM nginx:alpine
+FROM nginx:1.19.9-alpine
 
 #RUN ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log
 COPY dist /app
