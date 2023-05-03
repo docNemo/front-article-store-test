@@ -102,8 +102,7 @@ jobs:
           oc login -u ${{ secrets.LOGIN_OS }} -p ${{ secrets.PASSWORD_OS }} --server=https://${{ secrets.OPENSHIFT_SERVER }}:6443 --insecure-skip-tls-verify
           oc project ${{ env.OS_PROJECT }}
 
-      - name: Logout from OpenShift
-        run: oc whoami
+      - run: oc whoami
 
       - name: Deploy to OS
         run: |

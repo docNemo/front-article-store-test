@@ -1,5 +1,5 @@
 FROM node:18.16.0-alpine3.17
-FROM nginxinc/nginx-unprivileged:latest-amd64
+FROM nginx:alpine
 
 #RUN ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log
 COPY dist /app
