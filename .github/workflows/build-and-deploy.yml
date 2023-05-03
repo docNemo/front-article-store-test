@@ -5,7 +5,10 @@ on:
 #    branches: [ "master", "develop", "release/**" ]
   pull_request:
     branches: [ "master", "develop", "release/**", "feature/**" ]
-    types: [opened, reopened, synchronize, closed]
+    types: [opened, reopened, synchronize]
+  pull_request_target:
+    branches: [ "master", "develop", "release/**", "feature/**" ]
+    types: [ closed ]
 env:
   REGISTRY: ghcr.io
 
@@ -48,11 +51,11 @@ jobs:
 
 #       BUILD DOCKER CONTAINER
       - name: Choose source branch
-        if: github.event.pull_request.merged == false
+        if: github.event.pull_request
         run: echo "BRANCH=${{ github.head_ref }}" >> $GITHUB_ENV
 
       - name: Choose target branch
-        if: github.event.pull_request.merged == true
+        if: github.event.pull_request_target
         run: echo "BRANCH=${{ github.base_ref }}" >> $GITHUB_ENV
 
       - name: Prepare branch name if open PR
