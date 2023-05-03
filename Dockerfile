@@ -1,5 +1,5 @@
 FROM node:18.16.0-alpine3.17
-FROM centos/nginx-112-centos7:latest
+FROM nginx:1.23.4
 
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log
 COPY dist /app
