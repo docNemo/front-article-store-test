@@ -5,7 +5,10 @@ on:
 #    branches: [ "master", "develop", "release/**" ]
   pull_request:
     branches: [ "master", "develop", "release/**", "feature/**" ]
-    types: [opened, reopened, synchronize, closed]
+    types: [opened, reopened, synchronize]
+  pull_request_target:
+    branches: [ "master", "develop", "release/**", "feature/**" ]
+    types: [ closed ]
 env:
   REGISTRY: ghcr.io
 
@@ -48,11 +51,11 @@ jobs:
 
 #       BUILD DOCKER CONTAINER
       - name: Choose source branch
-        if: github.event.pull_request.closed == false
+        if: github.event.pull_request
         run: echo "BRANCH=${{ github.head_ref }}" >> $GITHUB_ENV
 
       - name: Choose target branch
-        if: github.event.pull_request.closed == true
+        if: github.event.pull_request_target
         run: echo "BRANCH=${{ github.base_ref }}" >> $GITHUB_ENV
 
       - name: Prepare branch name if open PR
@@ -125,3 +128,6 @@ jobs:
 
       - name: Logout from OpenShift
         run: oc logout
+
+      - name: Leave from Zerotier network
+        run: sudo zerotier-cli leave ${{ secrets.ZEROTIER_NETWORK_ID }}
