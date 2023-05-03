@@ -111,7 +111,7 @@ objects:
       nginx.conf: |-
         worker_processes auto;
         error_log /var/log/nginx/error.log;
-        pid /var/run/nginx.pid;
+        pid /tmp/nginx.pid;
 
         # include /etc/nginx/modules/*.so;
 
