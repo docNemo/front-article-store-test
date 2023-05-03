@@ -5,7 +5,7 @@ on:
 #    branches: [ "master", "develop", "release/**" ]
   pull_request:
     branches: [ "master", "develop", "release/**", "feature/**" ]
-    types: [open, reopen, synchronize, closed]
+    types: [opened, reopened, synchronize, closed]
 env:
   REGISTRY: ghcr.io
 
