@@ -42,6 +42,7 @@ jobs:
           node-version: 18
       - run: npm --version
       - run: ls -a
+      - run: npm ci
       - run: npm run build
       - run: npm test
 
