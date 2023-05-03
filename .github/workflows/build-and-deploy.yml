@@ -44,6 +44,7 @@ jobs:
       - run: ls -a
       - run: npm ci
       - run: npm run build
+      - run: ls -a dist/
 
 #       BUILD DOCKER CONTAINER
       - name: Prepare branch name
