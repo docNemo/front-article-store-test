@@ -188,7 +188,7 @@ objects:
   - kind: ConfigMap
     apiVersion: v1
     metadata:
-      name: ${APPLICATION_NAME}-nginx-conf
+      name: ${APPLICATION_NAME}-mime-types
     data:
       mime.types: |-
         types {
