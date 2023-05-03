@@ -48,11 +48,11 @@ jobs:
 
 #       BUILD DOCKER CONTAINER
       - name: Choose source branch
-        if: github.event.pull_request.closed == false
+        if: github.event.pull_request.merged == false
         run: echo "BRANCH=${{ github.head_ref }}" >> $GITHUB_ENV
 
       - name: Choose target branch
-        if: github.event.pull_request.closed == true
+        if: github.event.pull_request.merged == true
         run: echo "BRANCH=${{ github.base_ref }}" >> $GITHUB_ENV
 
       - name: Prepare branch name if open PR
