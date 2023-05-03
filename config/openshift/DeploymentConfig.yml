@@ -145,8 +145,8 @@ objects:
             server {
                 gzip on;
                 gzip_types   text/plain application/xml application/x-javascript text/css;
-                listen       80 default_server;
-                listen       [::]:80 default_server;
+                listen       8080 default_server;
+                listen       [::]:8080 default_server;
                 server_name  _;
                 root         /app;
 
