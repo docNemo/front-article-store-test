@@ -47,21 +47,20 @@ jobs:
       - run: ls -a dist/
 
 #       BUILD DOCKER CONTAINER
+      - name: Choose source branch
+        if: github.event.pull_request.closed == false
+        run: echo "BRANCH=${{ github.head_ref }}" >> $GITHUB_ENV
+
+      - name: Choose target branch
+        if: github.event.pull_request.closed == true
+        run: echo "BRANCH=${{ github.base_ref }}" >> $GITHUB_ENV
+
       - name: Prepare branch name if open PR
         uses: jungwinter/split@master
-        if: github.event.pull_request.closed == false
+#        if: github.event.pull_request.closed == false
         id: branch
         with:
-          msg: ${{ github.head_ref }}
-          separator: "/"
-          maxsplit: -1
-
-      - name: Prepare branch name if closed PR
-        uses: jungwinter/split@master
-        if: github.event.pull_request.closed == true
-        id: branch
-        with:
-          msg: ${{ github.base_ref }}
+          msg: ${{ env.BRANCH }}
           separator: "/"
           maxsplit: -1
 
