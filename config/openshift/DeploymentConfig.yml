@@ -138,7 +138,9 @@ objects:
             uwsgi_temp_path       /tmp/uwsgi_temp;
             scgi_temp_path        /tmp/scgi_temp;
 
-            include /etc/nginx/mime.types;
+            # include /etc/nginx/mime.types;
+            default_type application/json;
+        
             include /etc/nginx.d/*.conf;
 
             server {
@@ -178,6 +180,12 @@ objects:
                 }
             }
         }
+
+  - kind: ConfigMap
+    apiVersion: v1
+    metadata:
+      name: ${APPLICATION_NAME}-mime-types
+    data:
       mime.types: |-
         types {
             text/html                             html htm shtml;
